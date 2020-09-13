@@ -86,7 +86,6 @@ return "You Lose";
 
 }
 ```
-
 The "Test" option requirements : two nested for loops that tests all combinations of possible human and computer play combinations:
 ```
 for($c=0;$c<3;$c++) {
@@ -100,6 +99,5 @@ print "Human=$names[$h] Computer=$names[$c] Result=$r\n";
 }
 }
 ```
-The $names variable contains the strings "Rock", "Paper", and "Scissors" in this example. The output of this should look look as follows:
-
+The $names variable contains the strings "Rock", "Paper", and "Scissors" in this example.This allows to make sure that check() function properly handles all combinations of the possible plays properly without having to play for a long time as the computer makes random plays.
 
