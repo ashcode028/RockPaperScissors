@@ -1,7 +1,13 @@
 # Onlinegame-RockPaperScissors
 ## Specifications of each file
+These are according to the guidelines given in a course in coursera.
 ### Entry page-[index.php](RockPaperS/index.php)
-When you first come to the application (index.php) you are told to go to a login screen.
+When you first come to the application (index.php) you are told to go to a login screen.These three components will be present once we enter the game.Attempting to get into game without login pops up iwth a message. 
+```
+* Welcome to the game
+* Please log in
+* Directly to game
+```
 
 ### Login page-[login.php](RockPaperS/login.php)
 
@@ -35,3 +41,65 @@ is redirected to the game.php page with the user's name as a GET parameter using
 header("Location: game.php?name=".urlencode($_POST['who']));
 ```
 ### Gaming Area-[game.php](RockPaperS/game.php)
+In order to protect the game from being played without the user properly logging in, the game.php first 
+checks the session to see if the user's name is set and if the user's name is not set in the session 
+the game.php stops immediately using the PHP die() function:
+```
+die("Name parameter missing");
+```
+To test, navigate to game.php manually without logging in - it fails saying
+```
+"Name parameter missing".
+```
+If the user is logged in, they are presented with a drop-down menu showing the options Rock, Paper, Scissors,
+and Test as well as buttons labeled "Play" and "Logout".
+If the Logout button is pressed the user is redirected back to the index.php page using:
+```
+header('Location: index.php');
+```
+If the user selects, Rock, Paper, or Scissors and presses "Play", the game chooses random computer throw, and scores the game and prints out the result of the game as:
+```
+Your Play=Paper Computer Play=Paper Result=Tie
+````
+The computation as to whether the user wins, loses, or ties is done by a function named check() that returns a string telling the user what happened:
+```
+This function takes input as the computer and human play
+and returns "Tie", "You Lose", "You Win" depending on play
+where "You" is the human being addressed by the computer
+
+
+function check($computer, $human) {
+
+...
+
+return "Tie";
+
+...
+
+return "You Win";
+
+...
+
+return "You Lose";
+
+...
+
+}
+```
+
+The "Test" option requirements : two nested for loops that tests all combinations of possible human and computer play combinations:
+```
+for($c=0;$c<3;$c++) {
+
+for($h=0;$h<3;$h++) {
+
+$r = check($c, $h);
+
+print "Human=$names[$h] Computer=$names[$c] Result=$r\n";
+
+}
+}
+```
+The $names variable contains the strings "Rock", "Paper", and "Scissors" in this example. The output of this should look look as follows:
+
+
